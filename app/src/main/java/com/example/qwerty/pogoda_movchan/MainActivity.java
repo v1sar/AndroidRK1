@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ru.mail.weather.lib.City;
 import ru.mail.weather.lib.Weather;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.startService).setOnClickListener(onServiceStart);
         findViewById(R.id.stopService).setOnClickListener(onServiceStop);
         text = (TextView) findViewById(R.id.nameCity);
+        WeatherStorage.getInstance(MainActivity.this);
     }
 
     private final View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity{
             if (intent.getAction().equals(WeatherService.WEATHER_CHANGED_ACTION)) {
                 Weather temp = WeatherStorage.getInstance(MainActivity.this).getLastSavedWeather(WeatherStorage.getInstance(MainActivity.this).getCurrentCity());
                 text.setText(WeatherStorage.getInstance(MainActivity.this).getCurrentCity().toString()+" "+
-                        temp.getTemperature()+" "+temp.getDescription()); }
+                        temp.getTemperature()+" - "+temp.getDescription()); }
             if (intent.getAction().equals(WeatherService.WEATHER_ERROR_ACTION)) {
                 text.setText("ERROR");
             }
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity{
             Intent intent = new Intent(MainActivity.this, WeatherService.class);
             intent.setAction("ru.mail.park.WEATHER_LOAD_ACTION");
             WeatherUtils.getInstance().schedule(MainActivity.this, intent);
+            Toast.makeText(MainActivity.this, "Service started", Toast.LENGTH_LONG).show();
         }
     };
 
@@ -105,16 +109,19 @@ public class MainActivity extends AppCompatActivity{
             Intent intent = new Intent(MainActivity.this, WeatherService.class);
             intent.setAction("ru.mail.park.WEATHER_LOAD_ACTION");
             WeatherUtils.getInstance().unschedule(MainActivity.this, intent);
+            Toast.makeText(MainActivity.this, "Service stopped", Toast.LENGTH_LONG).show();
         }
     };
 
     private String withoutNull (City temp) {
         String str = null;
-        Weather w = WeatherStorage.getInstance(MainActivity.this).getLastSavedWeather(temp);
-        if (w.toString().contains("null")) {
-             str = WeatherStorage.getInstance(MainActivity.this).getCurrentCity().name()+" "+
-                w.getTemperature()+" - "+w.getDescription();
-        }
+        try { Weather w = WeatherStorage.getInstance(MainActivity.this).getLastSavedWeather(temp);
+            if (w.toString().contains("null")) {
+                str = WeatherStorage.getInstance(MainActivity.this).getCurrentCity().name() + " " +
+                        w.getTemperature() + " - " + w.getDescription();
+            return str;
+            }
+        } catch (Exception e) {}
         return str;
     }
 }
