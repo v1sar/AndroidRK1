@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.startService).setOnClickListener(onServiceStart);
         findViewById(R.id.stopService).setOnClickListener(onServiceStop);
         text = (TextView) findViewById(R.id.nameCity);
-        WeatherStorage.getInstance(MainActivity.this);
     }
 
     private final View.OnClickListener onClickListener = new View.OnClickListener() {
