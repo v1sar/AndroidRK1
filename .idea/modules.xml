@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tetst.iml" filepath="$PROJECT_DIR$/tetst.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pogoda_newest.iml" filepath="$PROJECT_DIR$/pogoda_newest.iml" />
     </modules>
   </component>
 </project>

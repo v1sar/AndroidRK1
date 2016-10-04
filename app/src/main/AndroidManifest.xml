@@ -20,15 +20,14 @@
 
         <service
             android:name=".WeatherService"
-            android:enabled="true"
-            android:exported="true">
+            android:enabled="true">
             <intent-filter>
                 <action android:name="ru.mail.park.WEATHER_LOAD_ACTION" />
                 <action android:name="ru.mail.park.WEATHER_CHANGED_ACTION" />
             </intent-filter>
         </service>
 
-        <activity android:name=".SelectActivity" />
+        <activity android:name=".SelectActivity" android:noHistory="true" />
 
     </application>
 

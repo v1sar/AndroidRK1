@@ -1,42 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.qwerty.pogoda_movchan.MainActivity">
+    tools:context="com.example.qwerty.pogoda_movchan.MainActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/nameCity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/nameCity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select city"
-            android:layout_marginTop="150dp"
-            android:textAlignment="center"/>
-        <Button
-            android:id="@+id/select"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button1" />
-        <Button
-            android:id="@+id/startService"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Start Service" />
-        <Button
-            android:id="@+id/stopService"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Stop Service" />
-
-    </LinearLayout>
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:layout_marginTop="150dp"
+        android:textAlignment="center"/>
+    <Button
+        android:id="@+id/select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button1" />
+    <Button
+        android:id="@+id/startService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Service" />
+    <Button
+        android:id="@+id/stopService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop Service" />
+</LinearLayout>

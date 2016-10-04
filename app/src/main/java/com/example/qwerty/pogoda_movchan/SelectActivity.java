@@ -1,11 +1,8 @@
 package com.example.qwerty.pogoda_movchan;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 import ru.mail.weather.lib.City;
 import ru.mail.weather.lib.WeatherStorage;
 
@@ -27,8 +24,6 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        final Intent intent = new Intent(SelectActivity.this, MainActivity.class);
-        Intent intentServ = new Intent(SelectActivity.this, WeatherService.class);
         switch (v.getId()) {
             case R.id.c1:
                 WeatherStorage.getInstance(SelectActivity.this).setCurrentCity(City.VICE_CITY);
@@ -46,9 +41,7 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
                 WeatherStorage.getInstance(SelectActivity.this).setCurrentCity(City.SPRINGFIELD);
                 break;
         }
-        intentServ.setAction("ru.mail.park.WEATHER_LOAD_ACTION");
-        startService(intentServ);
-        startActivity(intent);
+        finish();
     }
 
 }
