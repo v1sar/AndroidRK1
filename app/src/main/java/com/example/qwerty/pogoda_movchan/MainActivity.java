@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -109,11 +108,13 @@ public class MainActivity extends AppCompatActivity{
     };
 
     private String withoutNull (City temp) {
-        String str = null;
+        String str = "ERROR";
         Weather w = WeatherStorage.getInstance(MainActivity.this).getLastSavedWeather(temp);
-        if (w.toString().contains("null")) {
-            str = WeatherStorage.getInstance(MainActivity.this).getCurrentCity().name()+" "+
-                    w.getTemperature()+" - "+w.getDescription();
+        if (w != null) {
+            if (w.toString().contains("null")) {
+                str = WeatherStorage.getInstance(MainActivity.this).getCurrentCity().name() + " " +
+                        w.getTemperature() + " - " + w.getDescription();
+            } else { str = w.toString(); }
         }
         return str;
     }
